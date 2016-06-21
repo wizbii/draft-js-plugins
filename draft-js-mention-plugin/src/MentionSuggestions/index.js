@@ -5,6 +5,7 @@ import addMention from '../modifiers/addMention';
 import decodeOffsetKey from '../utils/decodeOffsetKey';
 import { genKey } from 'draft-js';
 import getSearchText from '../utils/getSearchText';
+import { trigger } from '../index';
 
 export default class MentionSuggestions extends Component {
 
@@ -147,7 +148,7 @@ export default class MentionSuggestions extends Component {
 
   onSearchChange = (editorState, selection) => {
     const { word } = getSearchText(editorState, selection);
-    const searchValue = word.substring(1, word.length);
+    const searchValue = word.replace(trigger, '');
     if (this.lastSearchValue !== searchValue) {
       this.lastSearchValue = searchValue;
       this.props.onSearchChange({ value: searchValue });
