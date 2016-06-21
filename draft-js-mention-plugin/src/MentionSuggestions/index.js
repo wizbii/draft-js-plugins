@@ -5,7 +5,7 @@ import addMention from '../modifiers/addMention';
 import decodeOffsetKey from '../utils/decodeOffsetKey';
 import { genKey } from 'draft-js';
 import getSearchText from '../utils/getSearchText';
-import { trigger } from '../index';
+import trigger from '../trigger';
 
 export default class MentionSuggestions extends Component {
 
