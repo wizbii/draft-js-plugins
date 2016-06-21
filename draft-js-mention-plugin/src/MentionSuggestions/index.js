@@ -22,7 +22,6 @@ export default class MentionSuggestions extends Component {
   };
 
   componentWillMount() {
-    this.key = genKey();
     this.props.callbacks.onChange = this.onEditorStateChange;
   }
 
@@ -256,6 +255,24 @@ export default class MentionSuggestions extends Component {
     }
   };
 
+  renderSuggestion = (mention, index) => {
+    const { theme = {} } = this.props;
+    const key = genKey();
+
+    return (
+      <Entry
+        key={ key }
+        onMentionSelect={ this.onMentionSelect }
+        onMentionFocus={ this.onMentionFocus }
+        isFocused={ this.state.focusedOptionIndex === index }
+        mention={ mention }
+        index={ index }
+        id={ `mention-option-${key}-${index}` }
+        theme={ theme }
+      />
+    );
+  };
+
   render() {
     if (!this.state.isActive) {
       return <noscript />;
@@ -270,20 +287,7 @@ export default class MentionSuggestions extends Component {
         id={ `mentions-list-${this.key}` }
         ref="popover"
       >
-        {
-          this.props.suggestions.map((mention, index) => (
-            <Entry
-              key={ mention.get('name') }
-              onMentionSelect={ this.onMentionSelect }
-              onMentionFocus={ this.onMentionFocus }
-              isFocused={ this.state.focusedOptionIndex === index }
-              mention={ mention }
-              index={ index }
-              id={ `mention-option-${this.key}-${index}` }
-              theme={ theme }
-            />
-          )).toJS()
-        }
+        {this.props.suggestions.map(this.renderSuggestion).toJS()}
       </div>
     );
   }
