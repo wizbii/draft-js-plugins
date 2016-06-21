@@ -1,7 +1,7 @@
 /* @flow */
 
 import findWithRegex from 'find-with-regex';
-import { trigger } from './index';
+import trigger from './trigger';
 
 const MENTION_REGEX = new RegExp(`(\\s|^)${trigger}((\\w+\\s*)+)`, 'g');
 

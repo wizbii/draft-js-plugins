@@ -1,4 +1,4 @@
-import { trigger } from '../index';
+import trigger from '../trigger';
 
 const getSearchText = (editorState, selection) => {
   const anchorKey = selection.getAnchorKey();
