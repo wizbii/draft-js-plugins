@@ -135,4 +135,3 @@ const createMentionPlugin = (config = {}) => {
 export default createMentionPlugin;
 
 export const defaultSuggestionsFilter = suggestionsFilter;
-export const trigger = '@';
