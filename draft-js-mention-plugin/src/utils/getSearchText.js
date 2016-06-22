@@ -1,4 +1,4 @@
-import trigger from '../trigger';
+import getSearchTextAt from './getSearchTextAt';
 
 const getSearchText = (editorState, selection) => {
   const anchorKey = selection.getAnchorKey();
@@ -7,16 +7,7 @@ const getSearchText = (editorState, selection) => {
   const currentBlock = currentContent.getBlockForKey(anchorKey);
   const blockText = currentBlock.getText();
 
-  const str = blockText.substr(0, anchorOffset);
-  const begin = str.lastIndexOf(trigger);
-  const word = str.slice(begin + trigger.length);
-  const end = str.length;
-
-  return {
-    word,
-    begin,
-    end
-  };
+  return getSearchTextAt(blockText, anchorOffset);
 };
 
 export default getSearchText;
