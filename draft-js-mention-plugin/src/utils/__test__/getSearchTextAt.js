@@ -11,7 +11,7 @@ describe('getSearchTextAt', () => {
   it('finds the search text following the trigger', () => {
     const expected = {
       word: 'john',
-      begin: 5,
+      begin: 4,
       end: 9,
     };
     expect(getSearchTextAt('hey @john doe how you doing?', 9)).to.deep.equal(expected);
@@ -20,7 +20,7 @@ describe('getSearchTextAt', () => {
   it('finds the search text preceding the cursor', () => {
     const expected = {
       word: 'jo',
-      begin: 5,
+      begin: 4,
       end: 7,
     };
     expect(getSearchTextAt('hey @john doe how you doing?', 7)).to.deep.equal(expected);
