@@ -149,6 +149,10 @@ export default class App extends Component {
               <span className={ styles.paramName }>onClose</span>
               <span>A callback which is triggered whenever the suggestions popover closes.</span>
             </div>
+            <div className={ styles.param }>
+              <span className={ styles.paramName }>getMentionKey</span>
+              <span>A function that receives an immutable mention and must return an unique identifier to be used as the suggestion's key property. By default, returns the mention's name.</span>
+            </div>
           </div>
           <Heading level={ 3 }>Additional Exports</Heading>
           <div>
