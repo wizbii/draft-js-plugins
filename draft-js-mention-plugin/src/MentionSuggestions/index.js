@@ -14,6 +14,11 @@ export default class MentionSuggestions extends Component {
       'IMMUTABLE',
       'MUTABLE',
     ]),
+    getMentionKey: PropTypes.func,
+  };
+
+  static defaultProps = {
+    getMentionKey: (mention) => mention.get('name'),
   };
 
   state = {
@@ -273,7 +278,7 @@ export default class MentionSuggestions extends Component {
         {
           this.props.suggestions.map((mention, index) => (
             <Entry
-              key={ mention.get('name') }
+              key={ this.props.getMentionKey(mention) }
               onMentionSelect={ this.onMentionSelect }
               onMentionFocus={ this.onMentionFocus }
               isFocused={ this.state.focusedOptionIndex === index }
