@@ -6,6 +6,7 @@ import decodeOffsetKey from '../utils/decodeOffsetKey';
 import { genKey } from 'draft-js';
 import getSearchText from '../utils/getSearchText';
 import trigger from '../trigger';
+import defaultEntryComponent from './Entry/defaultEntryComponent';
 
 export default class MentionSuggestions extends Component {
 
@@ -16,10 +17,12 @@ export default class MentionSuggestions extends Component {
       'MUTABLE',
     ]),
     getMentionKey: PropTypes.func,
+    entryComponent: PropTypes.func,
   };
 
   static defaultProps = {
     getMentionKey: (mention) => mention.get('name'),
+    entryComponent: defaultEntryComponent,
   };
 
   state = {
@@ -268,9 +271,11 @@ export default class MentionSuggestions extends Component {
     }
 
     const { theme = {} } = this.props;
+    const { entryComponent, ...props } = this.props;
+
     return (
       <div
-        {...this.props}
+        {...props}
         className={ theme.mentionSuggestions }
         role="listbox"
         id={ `mentions-list-${this.key}` }
@@ -287,6 +292,7 @@ export default class MentionSuggestions extends Component {
               index={ index }
               id={ `mention-option-${this.key}-${index}` }
               theme={ theme }
+              entryComponent={ entryComponent }
             />
           )).toJS()
         }
